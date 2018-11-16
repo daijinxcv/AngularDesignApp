@@ -23,9 +23,10 @@ export class ContentComponent implements OnInit {
 
   $(document).ready(function(){
     $('#checkAll').click(function(){
-    var checkAllButton = $('input[id=checkItem]')[0] as HTMLInputElement;
-    var checkItems = $('input[id=checkItem]')[0] as HTMLInputElement;
-    checkItems.checked = checkAllButton.checked;        
+    var checkAllButton = $('input[id=checkAll]')[0] as HTMLInputElement;
+    $('input[id=checkItem]').not(this).prop('checked', checkAllButton.checked);
+    //var checkItems = $('input[id=checkItem]')[0] as HTMLInputElement;
+    //checkItems.checked = checkAllButton.checked;
     });
   });  
   }
