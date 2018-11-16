@@ -1,0 +1,116 @@
+<nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+	<div class="container">
+		<a class="navbar-brand js-scroll-trigger" href="#"><span class="icon-graph"></span> Quotation / Quotation Processing</a>
+		<button class="navbar-toggler navbar-toggler-right" aria-expanded="false" aria-controls="navbarResponsive" aria-label="Toggle navigation" type="button" data-target="#navbarResponsive" data-toggle="collapse">
+		Toggle Menu
+		<i class="fas fa-bars"></i>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link js-scroll-trigger" href="#">General Info</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link js-scroll-trigger text-underline" href="#">Coverage Details</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link js-scroll-trigger text-muted" href="#">Quote Option</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link js-scroll-trigger" href="#">Attachments</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link js-scroll-trigger" href="#">Print</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link js-scroll-trigger" href="#">Exit</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<section class="mainbackground">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-11 my-auto mx-auto">
+				<div class="container-fluid">
+					<div align="right">
+						<button class="btn btn-outline btn-xl">Back</button>
+						<button class="btn btn-outline btn-xl">Save</button>
+						<button class="btn btn-outline btn-xl">Cancel</button>
+					</div>
+					<div align="left">
+						<button class="btn btn-outline btn-xl">Add</button>
+						<button class="btn btn-outline btn-xl">Delete</button><br>
+						<mat-form-field>
+					<label>Search:&nbsp;</label><input matInput (keyup)="applyFilter($event.target.value)" class="inputfields" style="background-color: white; box-shadow: 0px 0px 5px #27a768;">
+					</mat-form-field>
+					</div>
+					<mat-table #table [dataSource]="dataSource" class="table">
+					<ng-container matColumnDef="check">
+					<mat-header-cell *matHeaderCellDef mat-sort-header><input id="checkAll"class="checkbox"type="checkbox"/></mat-header-cell>
+					<mat-cell *matCellDef="let element"><input id="checkItem" class="checkbox"type="checkbox"/></mat-cell>
+					</ng-container>
+					<ng-container matColumnDef="coverCode">
+					<mat-header-cell *matHeaderCellDef mat-sort-header><label>Cover Code</label></mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.coverCode}} </mat-cell>
+					</ng-container>
+					<ng-container matColumnDef="section">
+					<mat-header-cell *matHeaderCellDef mat-sort-header> Section </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.section}} </mat-cell>
+					</ng-container>
+					<ng-container matColumnDef="bulletNo">
+					<mat-header-cell *matHeaderCellDef mat-sort-header> Bullet No </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.bulletNo}} </mat-cell>
+					</ng-container>
+					<ng-container matColumnDef="sumInsured">
+					<mat-header-cell *matHeaderCellDef mat-sort-header> Sum Insured </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.sumInsured}} </mat-cell>
+					</ng-container>
+					<ng-container matColumnDef="sort">
+					<mat-header-cell *matHeaderCellDef mat-sort-header> Sort Se </mat-header-cell>
+					<mat-cell *matCellDef="let element"> {{element.sort}} </mat-cell>
+					</ng-container>
+					<ng-container matColumnDef="addSI">
+					<mat-header-cell *matHeaderCellDef mat-sort-header> Add SI </mat-header-cell>
+					<mat-cell *matCellDef="let element"><input class="checkbox"type="checkbox"/></mat-cell>
+					</ng-container>
+					<ng-container matColumnDef="actions">
+					<mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>
+					<mat-cell *matCellDef="let element"><img src="../../assets/placeholder.png" class="img-fluid img-circular" width="25" /> <img src="../../assets/placeholder.png" class="img-fluid img-circular" width="25" /></mat-cell>
+					</ng-container>
+					<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+					<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+					</mat-table>
+					<mat-paginator [length]="5" [pageSize]="5" [pageSizeOptions]="[5, 10, 25]">
+					</mat-paginator>
+					<table>
+						<tr>
+							<td colspan="3"><label>Total Sum Insured:</label></td>
+						</tr>
+						<tr>
+							<td><label>Section I&nbsp;</label><input type="number" class="text-right inputfields" placeholder="50,000,000.00"></td>
+							<td><label>Section II&nbsp;</label><input type="number" placeholder="0.00" class="text-right inputfields">
+							</td>
+							<td><label>Section III&nbsp;</label><input type="number" placeholder="0.00" class="text-right inputfields"></td>
+						</tr>
+						<tr>
+							<td><label>Currency</label>
+								<select class="selectField">
+									<option value="BTC">BTC</option>
+									<option value="Dollar">Dollar</option>
+									<option value="Euro">Euro</option>
+									<option value="Yen">Yen</option>
+									<option value="Peso">Peso</option>
+									<option value="Rouble">Rouble</option>
+								</select>
+							</td>
+							<td><label>Deductibles</label><textarea class="form-control">Deductible applicable to entire quote, if any</textarea></td>
+							<td><label>Remarks</label><textarea class="form-control">Various remarks</textarea></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
